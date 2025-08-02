@@ -1,0 +1,6 @@
+python3 GenerateFineMaskAndPose.py \
+  --file_path /pascalem/data/PromptDresser_input/test_pairs.txt \
+  --input_image /pascalem/data/PromptDresser_input/test/image \
+  --input_cloth /pascalem/data/PromptDresser_input/test/cloth \
+  --output_mask /pascalem/data/PromptDresser_input/test/agnostic-mask-fine \
+  --output_pose /pascalem/data/PromptDresser_input/test/image-densepose \
