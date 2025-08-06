@@ -1,4 +1,5 @@
 python3 GenerateFineMaskAndPose.py \
+  --catvton_ckpt_path models \
   --file_path /pascalem/data/PromptDresser_input/test_pairs.txt \
   --input_image /pascalem/data/PromptDresser_input/test/image \
   --input_cloth /pascalem/data/PromptDresser_input/test/cloth \
