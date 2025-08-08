@@ -19,6 +19,7 @@ def parse_args():
     parser.add_argument("--input_image", type=str, required=True, help="Path to input directory")
     parser.add_argument("--input_cloth", type=str, required=True, help="Path to input directory")
     parser.add_argument("--output_mask", type=str, required=True, help="Path to output directory")
+    parser.add_argument("--output_mask_metadata", type=str, required=True, help="Path to output directory")
     parser.add_argument("--output_pose", type=str, required=True, help="Path to output directory")
     parser.add_argument("--debug", action='store_true', help="Debugging logging activated")
 
@@ -38,6 +39,7 @@ def main():
     DIR_IN_IMAGE = args.input_image
     DIR_IN_CLOTH = args.input_cloth
     DIR_OUT_MASK = args.output_mask
+    DIR_OUT_MASK_METADATA = args.output_mask_metadata
     DIR_OUT_POSE = args.output_pose
 
     catvton_ckpt_path = snapshot_download(args.catvton_ckpt_path) if not os.path.exists(args.catvton_ckpt_path) else args.catvton_ckpt_path
@@ -47,7 +49,7 @@ def main():
                             schp_ckpt=os.path.join(catvton_ckpt_path, "SCHP"),
                             device='cuda')
 
-    logging.info("AutoMasker initialised")
+    logging.info("autoMasker instance initialised")
 
     # Read paired list
     with open(FILE_PATH, 'r') as f: lines = f.readlines()
@@ -64,7 +66,7 @@ def main():
 
         image = Image.open(full_image_file)
 
-        mask_path = os.path.join(DIR_OUT_MASK, image_file.replace('.jpg', '_mask.png'))
+        mask_path = os.path.join(DIR_OUT_MASK_METADATA, image_file.replace('.jpg', '_mask.png'))
 
         logging.info("%s | Generating mask for %s", image_file, mask_type)
 
