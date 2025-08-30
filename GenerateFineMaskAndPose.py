@@ -18,6 +18,7 @@ def parse_args():
     parser.add_argument("--file_path", type=str, required=True, help="Path to the paired file")
     parser.add_argument("--input_image", type=str, required=True, help="Path to input directory")
     parser.add_argument("--input_cloth", type=str, required=True, help="Path to input directory")
+    parser.add_argument("--input_cloth_metadata", type=str, required=True, help="Path to input directory")
     parser.add_argument("--output_mask", type=str, required=True, help="Path to output directory")
     parser.add_argument("--output_pose", type=str, required=True, help="Path to output directory")
     parser.add_argument("--debug", action='store_true', help="Debugging logging activated")
@@ -37,6 +38,7 @@ def main():
     FILE_PATH = args.file_path
     DIR_IN_IMAGE = args.input_image
     DIR_IN_CLOTH = args.input_cloth
+    DIR_IN_CLOTH_METADATA = args.input_cloth_metadata
     DIR_OUT_MASK = args.output_mask
     DIR_OUT_POSE = args.output_pose
 
@@ -55,7 +57,7 @@ def main():
     for line in lines:
         image_file, cloth_file = line.strip().split()
         full_image_file = os.path.join(DIR_IN_IMAGE, image_file)
-        full_cloth_file = os.path.join(DIR_IN_CLOTH, cloth_file)
+        full_cloth_file = os.path.join(DIR_IN_CLOTH_METADATA, cloth_file)
         full_json_file = os.path.splitext(full_cloth_file)[0] + '.json'
 
         # Parse JSON
